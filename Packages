@@ -1,32 +1,20 @@
-Package: com.example.awesometweak
-Name: Awesome Tweak
-Version: 1.2.3
-Architecture: iphoneos-arm
-Maintainer: Your Name <you@example.com>
-Depends: firmware (>= 14.0)
-Conflicts: com.old.tweak
-Description: This is an awesome tweak that does cool things on iOS.
-Author: Your Name
+Package: com.opticalraze.iconforge
+Version: 1.0-3+debug
+Architecture: iphoneos-arm64
+Maintainer: Optical Raze Inc.
+Installed-Size: 264
+Depends: firmware (>= 15.0)
+Filename: ./debs/com.opticalraze.iconforge_1.0-3+debug_iphoneos-arm64.deb
+Size: 15260
+MD5sum: ca605eea32edbab7673cdd39f69b97d9
+SHA1: 30151ebf90d8f936033adb5ba1fbca4fbd842a4f
+SHA256: 351b672a352b9b51be17c0e2d14303f5ab0ddc3ddb913d4cc2c900ee4ab73949
 Section: Tweaks
-Homepage: https://yourdomain.com
-Depiction: https://yourdomain.com/depictions/?p=com.example.awesometweak
-Icon: https://yourdomain.com/icons/com.example.awesometweak.png
-Size: 123456
-MD5sum: d41d8cd98f00b204e9800998ecf8427e
-SHA256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+Homepage: https://github.com/opticalraze/neosiri-repo
+Description: Generate custom unified icon themes!
+Author: Optical Raze Inc.
+Depiction: https://html-preview.github.io/?url=https://github.com/opticalraze/neosiri-repo/refs/heads/main/depictions/com.opticalraze.neosiri/depiction.html
+Icon: https://raw.githubusercontent.com/opticalraze/neosiri-repo/main/icons/com.opticalraze.neosiri.png
+Name: IconForge
+Sileodepiction: https://raw.githubusercontent.com/opticalraze/neosiri-repo/main/depictions/com.opticalraze.neosiri/sileo.json
 
-Package: com.example.theme.darkmode
-Name: Dark Mode Theme
-Version: 2.0.0
-Architecture: all
-Maintainer: Your Name <you@example.com>
-Depends: 
-Description: Beautiful dark theme for iOS.
-Author: Your Name
-Section: Themes
-Homepage: https://yourdomain.com
-Depiction: https://yourdomain.com/depictions/?p=com.example.theme.darkmode
-Icon: https://yourdomain.com/icons/com.example.theme.darkmode.png
-Size: 87654
-MD5sum: a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6
-SHA256: f7e8d9c0b1a2f3e4d5c6b7a8f9e0d1c2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8

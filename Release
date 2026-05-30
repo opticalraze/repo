@@ -1,9 +1,9 @@
-Origin: Optical Raze Inc.
-Label: OpticalRaze
+Origin: OpticalRaze
+Label: Optical Raze
 Suite: stable
-Codename: stable
-Architectures: iphoneos-arm arm64
-Components: main
-Description: The Official Optical Raze Jailbreak Repo
 Version: 1.0
+Codename: ios
+Architectures: iphoneos-arm iphoneos-arm64
+Components: main
+Description: The official Optical Raze iOS jailbreak repo
 Date: Sat, 30 May 2026 16:11:59 UTC
