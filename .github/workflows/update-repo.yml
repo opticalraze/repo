@@ -37,7 +37,7 @@ jobs:
           if git diff --quiet HEAD -- Packages* Release; then
             echo "No changes to commit"
           else
-            git add Packages Packages.gz Packages.bz2 Release
+            git add Packages Packages.gz Packages.bz2 Release packages.json
             git commit -m "chore: update repository packages [skip ci]" --quiet
             git push
             echo "✅ Changes committed and pushed"
