@@ -35,7 +35,7 @@ Whether you're looking for customization, performance enhancements, or aesthetic
 - **NotchHideX** — Advanced Dynamic Island / Notch customization
 - **StatusWeaver** — Beautiful status bar modules
 
-*Browse all packages on the [Repo Homepage](https://yourusername.github.io/OpticalRaze/)*
+*Browse all packages on the [Repo Homepage](https://repo.opticalraze.com/)*
 
 ---
 
@@ -67,7 +67,7 @@ We've built a beautiful native-like iOS interface for easy browsing:
 ### 💬 Support & Contact
 
 - **Discord**: (Add your Discord invite)
-- **Twitter / X**: [@yourhandle](https://twitter.com/yourhandle)
+- **Twitter / X**: [@opticalraze](https://twitter.com/opticalraze)
 - **Issues**: Feel free to open an issue on this repo
 
 ---
@@ -76,7 +76,7 @@ We've built a beautiful native-like iOS interface for easy browsing:
 
 Thank you to the entire jailbreak community for their continued innovation.
 
-Made with ❤️ by **Markus** (Optical Raze)
+Made with ❤️ by **Optical Raze**
 
 ---
 

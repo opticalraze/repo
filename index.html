@@ -11,21 +11,17 @@
     .glass { background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(20px); }
     .ios-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
     .ios-card:hover { transform: translateY(-4px); }
+    .scrollbar-hide::-webkit-scrollbar { display: none; }
   </style>
 </head>
 <body class="bg-black text-white min-h-screen pb-20">
-
-  <!-- iOS Status Bar Simulation -->
-  <div class="hidden h-12 bg-black flex items-end justify-end px-6 text-xs">
-    <span class="text-white/70">9:41</span>
-  </div>
 
   <!-- Navigation Bar -->
   <div class="sticky top-0 z-50 glass border-b border-white/10">
     <div class="max-w-xl mx-auto px-6 py-4 flex items-center justify-between">
       <div class="flex items-center gap-3">
         <img src="./CydiaIcon.png" alt="Logo" class="w-12 h-12 rounded-full p-1 bg-black">
-        <div class="text-right">
+        <div>
           <h1 class="text-2xl font-semibold tracking-tight">Optical Raze</h1>
           <p class="text-xs text-white/60 -mt-1">Jailbreak Repo</p>
         </div>
@@ -61,31 +57,8 @@
         <h3 class="text-xl font-semibold">Featured</h3>
         <a href="#" class="text-purple-400 text-sm font-medium">See all →</a>
       </div>
-      
-      <div class="grid grid-cols-2 gap-4">
-        <div class="ios-card glass rounded-3xl overflow-hidden border border-white/10">
-          <img src="https://picsum.photos/600/300" class="w-full h-36 object-cover">
-          <div class="p-4">
-            <h4 class="font-semibold">Eclipse Dark Mode</h4>
-            <p class="text-sm text-white/60">System-wide dark theme</p>
-            <div class="flex justify-between items-center mt-4">
-              <span class="text-xs bg-white/10 px-3 py-1 rounded-full">v2.4.1</span>
-              <button class="bg-white text-black text-sm font-medium px-6 py-2 rounded-2xl active:scale-95">Get</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="ios-card glass rounded-3xl overflow-hidden border border-white/10">
-          <img src="https://picsum.photos/601/300" class="w-full h-36 object-cover">
-          <div class="p-4">
-            <h4 class="font-semibold">PowerModule</h4>
-            <p class="text-sm text-white/60">Advanced power menu</p>
-            <div class="flex justify-between items-center mt-4">
-              <span class="text-xs bg-white/10 px-3 py-1 rounded-full">v1.8</span>
-              <button class="bg-white text-black text-sm font-medium px-6 py-2 rounded-2xl active:scale-95">Get</button>
-            </div>
-          </div>
-        </div>
+      <div id="featured-list" class="grid grid-cols-2 gap-4">
+        <!-- Populated by JS -->
       </div>
     </div>
 
@@ -105,24 +78,7 @@
     <div>
       <h3 class="text-xl font-semibold mb-4">All Packages</h3>
       <div id="packages-list" class="space-y-4">
-        <!-- Populated dynamically or manually -->
-        <div class="flex items-center gap-4 glass rounded-3xl p-4 ios-card">
-          <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex-shrink-0"></div>
-          <div class="flex-1 min-w-0">
-            <h4 class="font-medium">AquaDock</h4>
-            <p class="text-sm text-white/60 line-clamp-1">iOS 18 style dock with blur</p>
-          </div>
-          <button class="bg-white/10 hover:bg-white/20 px-6 py-2 rounded-2xl text-sm font-medium transition">View</button>
-        </div>
-
-        <div class="flex items-center gap-4 glass rounded-3xl p-4 ios-card">
-          <div class="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex-shrink-0"></div>
-          <div class="flex-1 min-w-0">
-            <h4 class="font-medium">NotchHideX</h4>
-            <p class="text-sm text-white/60 line-clamp-1">Hide or customize dynamic island</p>
-          </div>
-          <button class="bg-white/10 hover:bg-white/20 px-6 py-2 rounded-2xl text-sm font-medium transition">View</button>
-        </div>
+        <!-- Populated dynamically -->
       </div>
     </div>
   </div>
@@ -150,15 +106,81 @@
   </div>
 
   <script>
-    // Simple search filter
+    let allPackages = [];
+
+    async function loadPackages() {
+      try {
+        const response = await fetch('packages.json');
+        const data = await response.json();
+        allPackages = data.packages;
+        renderPackages(allPackages);
+        renderFeatured(allPackages.slice(0, 2)); // First 2 as featured
+      } catch (error) {
+        console.error("Failed to load packages:", error);
+        document.getElementById('packages-list').innerHTML = `
+          <p class="text-red-400 text-center py-8">Failed to load packages. Make sure packages.json exists.</p>
+        `;
+      }
+    }
+
+    function renderPackages(packages) {
+      const container = document.getElementById('packages-list');
+      container.innerHTML = '';
+
+      packages.forEach(pkg => {
+        const div = document.createElement('div');
+        div.className = "flex items-center gap-4 glass rounded-3xl p-4 ios-card";
+        div.innerHTML = `
+          <img src="${pkg.icon}" class="w-14 h-14 rounded-2xl object-cover flex-shrink-0">
+          <div class="flex-1 min-w-0">
+            <h4 class="font-medium">${pkg.name}</h4>
+            <p class="text-sm text-white/60 line-clamp-1">${pkg.description}</p>
+            <p class="text-xs text-white/40 mt-1">${pkg.version} • ${pkg.category}</p>
+          </div>
+          <button class="bg-white text-black text-sm font-medium px-6 py-2 rounded-2xl active:scale-95 transition">
+            ${pkg.price === "Free" ? "Get" : pkg.price}
+          </button>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function renderFeatured(packages) {
+      const container = document.getElementById('featured-list');
+      container.innerHTML = '';
+
+      packages.forEach(pkg => {
+        const div = document.createElement('div');
+        div.className = "ios-card glass rounded-3xl overflow-hidden border border-white/10";
+        div.innerHTML = `
+          <img src="${pkg.icon}" class="w-full h-36 object-cover">
+          <div class="p-4">
+            <h4 class="font-semibold">${pkg.name}</h4>
+            <p class="text-sm text-white/60">${pkg.description}</p>
+            <div class="flex justify-between items-center mt-4">
+              <span class="text-xs bg-white/10 px-3 py-1 rounded-full">${pkg.version}</span>
+              <button class="bg-white text-black text-sm font-medium px-6 py-2 rounded-2xl active:scale-95">
+                Get
+              </button>
+            </div>
+          </div>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    // Search functionality
     document.getElementById('search').addEventListener('input', function(e) {
       const term = e.target.value.toLowerCase();
-      const items = document.querySelectorAll('#packages-list > div');
-      items.forEach(item => {
-        const text = item.textContent.toLowerCase();
-        item.style.display = text.includes(term) ? 'flex' : 'none';
-      });
+      const filtered = allPackages.filter(pkg => 
+        pkg.name.toLowerCase().includes(term) || 
+        pkg.description.toLowerCase().includes(term)
+      );
+      renderPackages(filtered);
     });
+
+    // Load packages on page load
+    window.onload = loadPackages;
   </script>
 </body>
 </html>
