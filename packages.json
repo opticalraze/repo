@@ -1,40 +1,23 @@
 {
-    "packages": [
-        {
-            "id": "aquadock",
-            "name": "AquaDock",
-            "description": "iOS 18 style dock with blur and fluid animations",
-            "icon": "https://picsum.photos/id/1015/200/200",
-            "version": "1.2.3",
-            "category": "Tweaks",
-            "price": "Free"
-        },
-        {
-            "id": "notchhidex",
-            "name": "NotchHideX",
-            "description": "Hide or customize Dynamic Island and notch",
-            "icon": "https://picsum.photos/id/237/200/200",
-            "version": "2.0.1",
-            "category": "Status Bar",
-            "price": "Free"
-        },
-        {
-            "id": "eclipse",
-            "name": "Eclipse Dark Mode",
-            "description": "System-wide dark theme with custom colors",
-            "icon": "https://picsum.photos/id/201/200/200",
-            "version": "2.4.1",
-            "category": "Themes",
-            "price": "Free"
-        },
-        {
-            "id": "powermodule",
-            "name": "PowerModule",
-            "description": "Advanced power menu with custom actions",
-            "icon": "https://picsum.photos/id/180/200/200",
-            "version": "1.8.0",
-            "category": "Utilities",
-            "price": "Free"
-        }
-    ]
+  "packages": [
+    {
+      "id": "com-opticalraze-iconforge",
+      "name": "IconForge",
+      "description": "Generate custom unified icon themes!",
+      "icon": "https://picsum.photos/id/289/200/200",
+      "version": "1.0-3+debug",
+      "category": "Tweaks",
+      "price": "Free"
+    }
+    },
+    {
+      "id": "com-opticalraze-mediaplayermod",
+      "name": "Media Player Mod",
+      "description": "Customize the lockscreen media player.",
+      "icon": "https://picsum.photos/id/201/200/200",
+      "version": "1.0-2+debug",
+      "category": "Tweaks",
+      "price": "Free"
+    }
+  ]
 }
