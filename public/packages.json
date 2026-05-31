@@ -1,0 +1,31 @@
+{
+  "packages": [
+    {
+      "id": "com-opticalraze-iconforge",
+      "name": "IconForge",
+      "description": "Generate custom unified icon themes!",
+      "icon": "/depictions/com.opticalraze.iconforge/icon.png",
+      "version": "1.0-3+debug",
+      "category": "Tweaks",
+      "price": "Free"
+    },
+    {
+      "id": "com-opticalraze-neosiri",
+      "name": "NeoSiri",
+      "description": "Make Siri Think Different.",
+      "icon": "/depictions/com.opticalraze.neosiri/icon.png",
+      "version": "1.0-2+debug",
+      "category": "Tweaks",
+      "price": "Free"
+    },
+    {
+      "id": "com-opticalraze-webbox-tweak",
+      "name": "WebBox",
+      "description": "All Your Devices Connected.",
+      "icon": "/depictions/com.opticalraze.webbox.tweak/icon.png",
+      "version": "1.0-2+debug",
+      "category": "Tweaks",
+      "price": "Free"
+    }
+  ]
+}

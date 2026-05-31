@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+/*.glass { background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(20px); }*/
+.glass { background: rgb(35, 35, 35);}
+.ios-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+.ios-card:hover { transform: translateY(-4px); }
+.scrollbar-hide::-webkit-scrollbar { display: none; }
