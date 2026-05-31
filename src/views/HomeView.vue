@@ -4,6 +4,7 @@ import { ref, onMounted, watch } from 'vue'
 // Reactive state
 const allPackages = ref([])
 const filteredPackages = ref([])
+const featuredPackages = ref([])
 
 // Load packages
 async function loadPackages() {
@@ -79,7 +80,7 @@ onMounted(() => {
         <div id="featured-list" class="flex gap-4 overflow-scroll w-full mb-10 scrollbar-hide px-6">
             <!-- Populated by JS -->
             <div
-            v-for="pkg in allPackages.slice(0, 2)"
+            v-for="pkg in featuredPackages"
             :key="pkg.name"
             class="ios-card glass rounded-3xl overflow-hidden border border-white/10 shrink-0 w-64"
             >
