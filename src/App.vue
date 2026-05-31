@@ -8,7 +8,7 @@ const filteredPackages = ref([])
 // Load packages
 async function loadPackages() {
     try {
-        const response = await fetch('packages.json')
+        const response = await fetch('https://raw.githubusercontent.com/opticalraze/repo/refs/heads/main/packages.json')
         const data = await response.json()
         
         allPackages.value = data.packages
@@ -108,7 +108,7 @@ onMounted(() => {
                 :key="pkg.name"
                 class="ios-card glass rounded-3xl overflow-hidden border border-white/10 shrink-0 w-64"
                 >
-                <img :src="pkg.icon" class="w-full h-36 overflow-hidden object-cover" />
+                <img :src="`https://raw.githubusercontent.com/opticalraze/repo/refs/heads/main/${pkg.icon}`" class="w-full h-36 overflow-hidden object-cover" />
                 <div class="p-4">
                     <h4 class="font-semibold">{{ pkg.name }}</h4>
                     <p class="text-sm text-white/60">{{ pkg.description }}</p>
@@ -148,7 +148,7 @@ onMounted(() => {
                 :key="pkg.name"
                 class="flex items-center gap-4 glass rounded-3xl p-4 ios-card"
                 >
-                <img :src="pkg.icon" class="w-14 h-14 rounded-2xl object-cover flex-shrink-0" />
+                <img :src="`https://raw.githubusercontent.com/opticalraze/repo/refs/heads/main/${pkg.icon}`" class="w-14 h-14 rounded-2xl object-cover" />
                 <div class="flex-1 min-w-0">
                     <h4 class="font-medium">{{ pkg.name }}</h4>
                     <p class="text-sm text-white/60 line-clamp-1">{{ pkg.description }}</p>
