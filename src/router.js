@@ -3,11 +3,13 @@ import { createWebHashHistory, createRouter } from 'vue-router'
 import HomeView from './views/HomeView.vue'
 import FeaturedView from './views/FeaturedView.vue'
 import ProfileVIew from './views/ProfileVIew.vue'
+import PackageView from './views/PackageView.vue'
 
 const routes = [
     { path: '/', component: HomeView },
     { path: '/featured', component: FeaturedView },
     { path: '/profile', component: ProfileVIew },
+    { path: '/tweak/:slug', component: PackageView }
 ]
 
 export const router = createRouter({

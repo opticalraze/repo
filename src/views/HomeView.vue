@@ -79,7 +79,7 @@ onMounted(() => {
         </div>
         <div id="featured-list" class="flex gap-4 overflow-scroll w-full mb-10 scrollbar-hide px-6">
             <!-- Populated by JS -->
-            <div
+            <RouterLink :to="`/tweak/${pkg.name.toLowerCase().replace(/\s+/g, '-')}`"
             v-for="pkg in featuredPackages"
             :key="pkg.name"
             class="ios-card glass rounded-3xl overflow-hidden border border-white/10 shrink-0 w-64"
@@ -95,7 +95,7 @@ onMounted(() => {
                     </button>
                 </div>
             </div>
-        </div>
+        </RouterLink>
     </div>
     
     <!-- Categories -->
@@ -119,7 +119,7 @@ onMounted(() => {
         <h3 class="text-xl font-semibold mb-4">All Packages</h3>
         <div id="packages-list" class="space-y-4">
             <!-- Populated dynamically -->
-            <div
+            <RouterLink :to="`/tweak/${pkg.name.toLowerCase().replace(/\s+/g, '-')}`"
             v-for="pkg in filteredPackages"
             :key="pkg.name"
             class="flex items-center gap-4 glass rounded-3xl p-4 ios-card"
@@ -133,7 +133,7 @@ onMounted(() => {
             <button class="bg-white text-black text-sm font-medium px-6 py-2 rounded-2xl active:scale-95 transition">
                 {{ pkg.price === "Free" ? "Get" : pkg.price }}
             </button>
-        </div>
+        </RouterLink>
         
         <!-- Empty state -->
         <p
