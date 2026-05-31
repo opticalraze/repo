@@ -38,11 +38,11 @@
 <!-- Bottom Navigation -->
 <div class="fixed bottom-0 left-0 right-0 glass border-t border-white/10">
     <div class="max-w-xl mx-auto flex justify-around py-3 text-xs">
-        <RouterLink to="/" class="flex flex-col items-center text-purple-400">
+        <RouterLink to="/" class="flex flex-col items-center text-white/60" :class="{'text-red-400!': $route.path === '/'}">
             <i class="fa-solid fa-house text-2xl mb-1"></i>
             <span>Repo</span>
         </RouterLink>
-        <RouterLink to="/featured" class="flex flex-col items-center text-white/60">
+        <RouterLink to="/featured" class="flex flex-col items-center text-white/60" :class="{'text-red-400!': $route.path === '/featured'}">
             <i class="fa-solid fa-star text-2xl mb-1"></i>
             <span>Featured</span>
         </RouterLink>
@@ -50,9 +50,9 @@
             <i class="fa-solid fa-magnifying-glass text-2xl mb-1"></i>
             <span>Search</span>
         </RouterLink>
-        <RouterLink to="/profile" class="flex flex-col items-center text-white/60">
+        <RouterLink to="/profile" class="flex flex-col items-center text-white/60" :class="{'text-red-400!': $route.path === '/profile'}">
             <i class="fa-solid fa-user text-2xl mb-1"></i>
-            <span>Me</span>
+            <span>Profile</span>
         </RouterLink>
     </div>
 </div>

@@ -57,7 +57,7 @@ onMounted(() => {
     <!-- Welcome Header -->
     <div class="mb-10 px-6">
         <h2 class="text-4xl font-bold tracking-tighter mb-1">Welcome</h2>
-        <p class="text-white/60">Discover premium jailbreak tweaks & themes</p>
+        <p class="text-white/60">Discover Jailbreak Tweaks & Themes</p>
     </div>
     
     <!-- Search Bar -->
@@ -74,7 +74,7 @@ onMounted(() => {
     <div class="mb-10">
         <div class="flex justify-between items-center mb-4 px-6">
             <h3 class="text-xl font-semibold">Featured</h3>
-            <a href="#" class="text-purple-400 text-sm font-medium">See all →</a>
+            <RouterLink to="/featured" class="text-red-400 text-sm font-medium">See all →</RouterLink>
         </div>
         <div id="featured-list" class="flex gap-4 overflow-scroll w-full mb-10 scrollbar-hide px-6">
             <!-- Populated by JS -->
