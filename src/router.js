@@ -1,4 +1,4 @@
-import { createWebHistory, createRouter } from 'vue-router'
+import { createWebHashHistory, createRouter } from 'vue-router'
 
 import HomeView from './views/HomeView.vue'
 import FeaturedView from './views/FeaturedView.vue'
@@ -11,7 +11,7 @@ const routes = [
 ]
 
 export const router = createRouter({
-    history: createWebHistory(import.meta.env.BASE_URL),
+    history: createWebHashHistory(import.meta.env.BASE_URL),
     routes,
     
     // Reset scroll to top on navigation
