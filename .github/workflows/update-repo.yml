@@ -1,0 +1,44 @@
+name: Update Jailbreak Repo
+
+on:
+  push:
+    branches:
+      - main
+      - master
+    paths:
+      - 'debs/**'
+      - '.github/workflows/update-repo.yml'
+
+  workflow_dispatch:  # Allows manual trigger
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install dpkg-dev
+        run: sudo apt-get update && sudo apt-get install -y dpkg-dev
+
+      - name: Run repo update script
+        run: |
+          chmod +x update-repo.sh
+          ./update-repo.sh
+
+      - name: Commit updated files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          
+          if git diff --quiet HEAD -- Packages* Release; then
+            echo "No changes to commit"
+          else
+            git add Packages Packages.gz Packages.bz2 Release packages.json
+            git commit -m "chore: update repository packages [skip ci]" --quiet
+            git push
+            echo "✅ Changes committed and pushed"
+          fi
