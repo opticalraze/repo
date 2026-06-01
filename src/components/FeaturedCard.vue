@@ -24,7 +24,7 @@ const { imageSrc } = usePackageImage(props.pkg)
             <!-- Image on top -->
             <img 
             :src="imageSrc" 
-            class="absolute inset-0 z-20 w-full h-full object-cover"
+            class="absolute inset-0 z-20 w-full h-full object-cover rounded-t-3xl"
             />
 
             <div class="absolute z-30 flex flex-col justify-end text-center w-full h-full">
