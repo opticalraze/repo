@@ -6,16 +6,16 @@ Codename: ios
 Architectures: iphoneos-arm iphoneos-arm64
 Components: main
 Description: Jailbreak tweaks and themes for iOS by Optical Raze
-Date: Mon, 01 Jun 2026 16:36:36 UTC
+Date: Mon, 01 Jun 2026 16:54:58 UTC
 MD5Sum:
  2274f6ec8d6d1a15d20c5a7a598c0ac8     2902 Packages
- 1a7d8031771371db9786b960e9665e70      986 Packages.gz
+ a07772a032d490d4d4b3263453b31fb2      986 Packages.gz
  e220933620299d6be851e2e61e7f5e63     1099 Packages.bz2
 SHA1:
  f9a533ab244702d50e8de6d093fc35f435725291     2902 Packages
- cbdabdd078ac2ee38d7a03dc7b082e2aa25f96c4      986 Packages.gz
+ e351d24ea05a0066f8dca9d032909438fad71c8b      986 Packages.gz
  3df49f0fdb6b8e1d7d57e54c0d967827f0e29d17     1099 Packages.bz2
 SHA256:
  d9208d84ab9c277fa3fec5f2d27fdc628c595e328e7b0d0ebb9beb38d4b24bfe     2902 Packages
- 2240324ede5b77fba77e89a95e148458ff0531c06e293e04cf4df54ee81c91b7      986 Packages.gz
+ 847ab0f0b86d74185328b3a372c8b5f066c9ddcfe79e3be14ca32bae31d74cee      986 Packages.gz
  b320041bbe1c885b06f53bfd7201c868448b15a53cb7e2d198f75277b65acd98     1099 Packages.bz2
