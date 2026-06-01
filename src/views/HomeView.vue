@@ -79,7 +79,7 @@ onMounted(() => {
             <h3 class="text-xl font-semibold">Featured</h3>
             <RouterLink to="/featured" class="text-red-400 text-sm font-medium">See all →</RouterLink>
         </div>
-        <div id="featured-list" class="flex gap-4 overflow-scroll w-full mb-10 pt-4 scrollbar-hide px-6">
+        <div id="featured-list" class="flex gap-4 overflow-scroll w-full mb-10 pt-4 scrollbar-hide">
             <FeaturedCard 
             v-for="(pkg, i) in featuredPackages"
             :key="i"
