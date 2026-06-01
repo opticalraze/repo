@@ -11,12 +11,12 @@ const loading = ref(true)
 // Load single package
 async function loadPackage() {
     try {
-        const response = await fetch('https://raw.githubusercontent.com/opticalraze/repo/refs/heads/main/packages.json')
+        const response = await fetch('/packages.json')
         const data = await response.json()
         
         const slug = route.params.slug
         const found = data.packages.find(pkg => 
-            pkg.name.toLowerCase().replace(/\s+/g, '-') === slug
+            pkg.bundle_id.toLowerCase().replace(/\s+/g, '-') === slug
         )
         
         if (found) {
@@ -45,7 +45,7 @@ function goBack() {
 <template>
     <div class="min-h-screen bg-black text-white pb-20">
         <!-- Back Button -->
-        <div class="sticky top-21 left-0 right-0 z-40 bg-black/80 backdrop-blur-lg border-b border-white/10">
+        <div v-if="false" class="sticky top-21 left-0 right-0 z-40 bg-black/80 backdrop-blur-lg border-b border-white/10">
             <div class="flex items-center px-6 py-4">
                 <button @click="goBack" class="flex items-center gap-2 text-white/70 hover:text-white transition">
                     <i class="fa-solid fa-chevron-left"></i>
@@ -58,24 +58,28 @@ function goBack() {
             <p class="text-white/50">Loading tweak...</p>
         </div>
 
-        <div v-else-if="packageData" class="pt-16">
+        <div v-else-if="packageData" class="-mt-16">
             <!-- Hero Image -->
             <div class="relative h-80">
                 <img 
-                    :src="`https://raw.githubusercontent.com/opticalraze/repo/refs/heads/main/${packageData.icon}`" 
+                    :src="`${packageData.banner}`" 
                     class="w-full h-full object-cover brightness-75"
                 >
                 <div class="absolute inset-0 bg-linear-to-b from-transparent via-black/60 to-black"></div>
                 
                 <!-- Name Overlay -->
-                <div class="absolute bottom-0 left-0 right-0 p-6">
-                    <h1 class="text-4xl font-bold tracking-tighter">{{ packageData.name }}</h1>
-                    <p class="text-white/70 mt-1">{{ packageData.author || 'Optical Raze' }}</p>
+                <div class="absolute bottom-0 left-0 right-0 p-6 flex items-center gap-6">
+                    <img :src="`${packageData.icon}`" alt="icon" class="w-16 h-16 rounded-xl">
+                    <div class="">
+                                            <h1 class="text-4xl font-bold tracking-tighter">{{ packageData.name }}</h1>
+                    <p class="text-white/70 -mt-0.5">{{ packageData.author || 'Optical Raze' }}</p>
+
+                    </div>
                 </div>
             </div>
 
             <!-- Main Content -->
-            <div class="px-6 -mt-6 relative">
+            <div class="px-6 relative">
                 <div class="glass rounded-3xl p-6 mb-8">
                     <div class="flex justify-between items-center">
                         <div>

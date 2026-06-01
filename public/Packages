@@ -1,0 +1,55 @@
+Package: com.opticalraze.iconforge
+Version: 1.0-3+debug
+Architecture: iphoneos-arm64
+Maintainer: Optical Raze Inc.
+Installed-Size: 264
+Depends: firmware (>= 15.0)
+Filename: debs/com.opticalraze.iconforge_1.0-3+debug_iphoneos-arm64.deb
+Size: 15260
+MD5sum: ca605eea32edbab7673cdd39f69b97d9
+SHA1: 30151ebf90d8f936033adb5ba1fbca4fbd842a4f
+SHA256: 351b672a352b9b51be17c0e2d14303f5ab0ddc3ddb913d4cc2c900ee4ab73949
+Section: Tweaks
+Homepage: https://github.com/opticalraze/neosiri-repo
+Description: Generate custom unified icon themes!
+Author: Optical Raze Inc.
+Depiction: https://html-preview.github.io/?url=https://github.com/opticalraze/neosiri-repo/refs/heads/main/depictions/com.opticalraze.neosiri/depiction.html
+Icon: https://raw.githubusercontent.com/opticalraze/neosiri-repo/main/icons/com.opticalraze.neosiri.png
+Name: IconForge
+Sileodepiction: https://raw.githubusercontent.com/opticalraze/neosiri-repo/main/depictions/com.opticalraze.neosiri/sileo.json
+
+Package: com.opticalraze.neosiri
+Version: 1.5.0-3+debug
+Architecture: iphoneos-arm64
+Maintainer: Markus Gudelis
+Installed-Size: 104
+Depends: firmware (>= 15.0)
+Filename: debs/com.opticalraze.neosiri_1.5.0-3+debug_iphoneos-arm64.deb
+Size: 1884
+MD5sum: b947198ac885f522f428a9cad6b663cf
+SHA1: fd5c01e4b2b46f090b9a859404542a12573c3c1a
+SHA256: 8385abea32696a9bddf83a464847cde100fac90e019f17cc050423ac198bf14f
+Section: Tweaks
+Description: Customize your Siri experience!
+Author: Optical Raze Inc.
+Name: NeoSiri
+
+Package: com.opticalraze.textswap
+Version: 1.0-2+debug
+Architecture: iphoneos-arm
+Maintainer: OpticalRaze
+Installed-Size: 588
+Depends: mobilesubstrate, preferenceloader
+Filename: debs/com.opticalraze.textswap_1.0-2+debug_iphoneos-arm.deb
+Size: 59816
+MD5sum: f2e8feceaea70e5bd8002c601487ae14
+SHA1: 7ecce10c386a02aeeade554b6d06d1e9205b6147
+SHA256: 158ca6a6b86466b9033db196620d6b3693ec45c56e2e4ccb8f9cb95fce50ae0a
+Section: Tweaks
+Description: Replace any text, system-wide!
+Author: OpticalRaze
+Depiction: https://repo.opticalraze.com/depictions/com.opticalraze.textswap/index.html
+Icon: https://repo.opticalraze.com/depictions/com.opticalraze.textswap/icon.png
+Name: TextSwap
+Sileodepiction: https://repo.opticalraze.com/depictions/com.opticalraze.textswap/sileo.json
+

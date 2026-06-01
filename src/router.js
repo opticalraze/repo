@@ -19,7 +19,7 @@ export const router = createRouter({
     // Reset scroll to top on navigation
     scrollBehavior(to, from, savedPosition) {
         // Always scroll to top on new navigation
-        return { top: 0, left: 0, behavior: 'smooth' } // or 'auto'
+        return { top: 0, left: 0, behavior: 'instant' } // or 'auto'
         
         // Alternative: Restore position when using browser back/forward
         // return savedPosition || { top: 0, left: 0 }
