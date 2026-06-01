@@ -17,8 +17,8 @@ const { imageSrc } = usePackageImage(props.pkg)
     >
         <div class="relative w-full h-36 overflow-hidden bg-white/10 rounded-t-3xl border-b border-white/10">
             <!-- Spinner behind the image -->
-             <div class="absolute inset-0 z-10">
-                <LoadingSpinner class="flex items-center justify-center" />
+             <div class="absolute inset-0 z-10 flex items-center justify-center">
+                <LoadingSpinner class="mb-4" />
              </div>
             
             <!-- Image on top -->
