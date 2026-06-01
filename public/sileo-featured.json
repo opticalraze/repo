@@ -1,0 +1,19 @@
+{  
+   "class":"FeaturedBannersView",
+   "itemSize":"{263, 148}",
+   "itemCornerRadius":10,
+   "banners":[  
+      {  
+         "url":"https://repo.opticalraze.com/depictions/com.opticalraze.neoriri/banner.png",
+         "title":"NeoSiri",
+         "package":"com.opticalraze.neosiri",
+         "hideShadow":false
+      },
+      {  
+         "url":"https://repo.opticalraze.com/depictions/com.opticalraze.textswap/banner.png",
+         "title":"TextSwap",
+         "package":"com.opticalraze.textswap",
+         "hideShadow":false
+      }
+   ]
+}
