@@ -15,7 +15,7 @@ const { imageSrc } = usePackageImage(props.pkg)
     <RouterLink :to="`/package/${pkg.bundle_id.toLowerCase().replace(/\s+/g, '-')}`"
         class="ios-card glass rounded-3xl overflow-hidden border border-white/10 shrink-0 w-64"
     >
-        <div class="relative w-full h-36 overflow-hidden bg-white/10">
+        <div class="relative w-full h-36 overflow-hidden bg-white/10 rounded-t-3xl border-b border-white/10">
             <!-- Spinner behind the image -->
              <div class="absolute inset-0 z-10">
                 <LoadingSpinner class="flex items-center justify-center" />
@@ -28,7 +28,7 @@ const { imageSrc } = usePackageImage(props.pkg)
             />
 
             <div class="absolute z-30 flex flex-col justify-end text-center w-full h-full">
-                <p class="w-full py-2 font-medium italic">{{ pkg.subtitle }}</p>
+                <p class="w-full py-2 font-medium italic text-xs h-10 flex flex-col justify-center">{{ pkg.subtitle }}</p>
             </div>
         </div>
         <div class="p-4">
