@@ -28,7 +28,12 @@ const { imageSrc } = usePackageImage(props.pkg)
             />
 
             <div class="absolute z-30 flex flex-col justify-end text-center w-full h-full">
-                <p class="w-full py-2 font-medium italic text-xs h-10 flex flex-col justify-center">{{ pkg.subtitle }}</p>
+                
+                <div class="h-10 w-full bg-black">
+                    <img :src="imageSrc" alt="" class="absolute w-full h-full object-cover blur-3xl" />
+                    <p v-if="pkg.subtitle" class="relative z-20 w-full font-medium italic text-xs h-10 flex flex-col justify-center">"{{ pkg.subtitle }}"</p>
+                </div>
+                
             </div>
         </div>
         <div class="p-4">
