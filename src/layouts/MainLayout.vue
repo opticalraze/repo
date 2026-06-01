@@ -14,7 +14,7 @@ function goBack() {
 
 <template>
     <!-- Navigation Bar -->
-    <div class="sticky top-0 z-50 glass border-b border-white/10">
+    <div class="sticky top-0 z-40 glass border-b border-white/10">
         <div class="max-w-xl mx-auto py-4 flex items-center justify-between px-6">
             <div class="flex items-center gap-3 w-full">
                 <div class="text-right">
@@ -58,7 +58,7 @@ function goBack() {
     </div>
 
 <!-- Bottom Navigation -->
-<div class="fixed bottom-0 left-0 right-0 glass border-t border-white/10">
+<div class="fixed z-40 bottom-0 left-0 right-0 glass border-t border-white/10">
     <div class="max-w-xl mx-auto flex justify-around py-3 text-xs">
         <RouterLink to="/" class="flex flex-col items-center text-white/60" :class="{'text-[#00b4ff]!': $route.path === '/'}">
             <i class="fa-solid fa-house text-2xl mb-1"></i>
