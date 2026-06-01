@@ -1,22 +1,22 @@
 Package: com.opticalraze.iconforge
-Version: 1.0-3+debug
+Version: 1.0-4+debug
 Architecture: iphoneos-arm64
 Maintainer: Optical Raze Inc.
 Installed-Size: 264
 Depends: firmware (>= 15.0)
-Filename: ../debs/com.opticalraze.iconforge_1.0-3+debug_iphoneos-arm64.deb
-Size: 15260
-MD5sum: ca605eea32edbab7673cdd39f69b97d9
-SHA1: 30151ebf90d8f936033adb5ba1fbca4fbd842a4f
-SHA256: 351b672a352b9b51be17c0e2d14303f5ab0ddc3ddb913d4cc2c900ee4ab73949
+Filename: ../debs/com.opticalraze.iconforge_1.0-4+debug_iphoneos-arm64.deb
+Size: 15216
+MD5sum: 0d061c4e51d2cc758fa4f4cc97fead68
+SHA1: d514f18d7effa437f8a3d8c6475bf3a230f8fa6d
+SHA256: b266f54823e58f77c283b8aa5afede3dda9113d9a92ed6fd838e600b08d0d169
 Section: Tweaks
-Homepage: https://github.com/opticalraze/neosiri-repo
+Homepage: https://repo.opticalraze.com/package/com.opticalraze.iconforge
 Description: Generate custom unified icon themes!
 Author: Optical Raze Inc.
-Depiction: https://html-preview.github.io/?url=https://github.com/opticalraze/neosiri-repo/refs/heads/main/depictions/com.opticalraze.neosiri/depiction.html
-Icon: https://raw.githubusercontent.com/opticalraze/neosiri-repo/main/icons/com.opticalraze.neosiri.png
+Depiction: https://repo.opticalraze.com/depiction/com.opticalraze.iconforge
+Icon: https://repo.opticalraze.com/depictions/com.opticalraze.iconforge/image.png
 Name: IconForge
-Sileodepiction: https://raw.githubusercontent.com/opticalraze/neosiri-repo/main/depictions/com.opticalraze.neosiri/sileo.json
+Sileodepiction: https://repo.opticalraze.com/depictions/com.opticalraze.neosiiconforgeri/sileo.json
 
 Package: com.opticalraze.neosiri
 Version: 1.5.0-3+debug
