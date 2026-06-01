@@ -8,7 +8,8 @@
     "build": "vite build",
     "build:gh": "vite build --mode gh-pages",
     "preview": "vite preview",
-    "deploy": "gh-pages -d dist"
+    "update-repo": "bash update-repo.sh",
+    "deploy": "rm -rf dist && npm run build && npm run update-repo && gh-pages -d dist"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^7.2.0",

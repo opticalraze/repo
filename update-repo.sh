@@ -2,23 +2,23 @@
 
 # =============================================
 # Jailbreak Repo Packages Updater
-# Properly formatted packages.json (No extra commas/braces)
+# Generates files into dist/ for deployment
 # =============================================
 
-PUBLIC_DIR="./public"
 DEBS_DIR="debs"
+DEPICTIONS_DIR="depictions"
+DIST_DIR="dist"
 
 echo "🔄 Updating jailbreak repository..."
 
-if [ ! -d "$PUBLIC_DIR" ]; then
-    echo "❌ Error: $PUBLIC_DIR directory not found!"
+# Check directories
+if [ ! -d "$DEBS_DIR" ]; then
+    echo "❌ Error: $DEBS_DIR directory not found!"
     exit 1
 fi
 
-cd "$PUBLIC_DIR" || exit 1
-
-if [ ! -d "$DEBS_DIR" ]; then
-    echo "❌ Error: $DEBS_DIR directory not found!"
+if [ ! -d "$DEPICTIONS_DIR" ]; then
+    echo "❌ Error: $DEPICTIONS_DIR directory not found!"
     exit 1
 fi
 
@@ -29,6 +29,15 @@ if [ "$DEB_COUNT" -eq 0 ]; then
     echo "⚠️  No .deb files found!"
     exit 1
 fi
+
+# Create repo structure in dist/
+mkdir -p "$DIST_DIR/dists/stable/main/binary-amd64"
+mkdir -p "$DIST_DIR/depictions"
+
+# Copy depictions into dist/
+cp -r "$DEPICTIONS_DIR"/* "$DIST_DIR/depictions/" 2>/dev/null || true
+
+cd "$DIST_DIR" || exit 1
 
 # Platform compatibility
 if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -45,13 +54,13 @@ fi
 
 # Generate Packages
 echo "📋 Generating Packages file..."
-dpkg-scanpackages -m "$DEBS_DIR" /dev/null > Packages
+dpkg-scanpackages -m "../$DEBS_DIR" /dev/null > Packages
 
 echo "🗜️  Compressing Packages..."
 bzip2 -c -k Packages > Packages.bz2
 gzip -c -k Packages > Packages.gz
 
-# ==================== GENERATE packages.json ====================
+# ==================== Generate packages.json ====================
 echo "📄 Generating clean packages.json..."
 
 cat > packages.json << EOF
@@ -72,7 +81,6 @@ while IFS= read -r line || [ -n "$line" ]; do
     elif [[ $line == "Description:"* ]]; then
         description=$(echo "$line" | sed 's/Description: //')
     elif [[ $line == "" && -n "$bundle_id" ]]; then
-        # Add comma before this object if it's not the first
         if [ $is_first -eq 0 ]; then
             echo "    }," >> packages.json
         fi
@@ -102,15 +110,14 @@ EOF
     fi
 done < Packages
 
-# Close the last object and the array properly
+# Close JSON properly
 if [ $is_first -eq 0 ]; then
     echo "    }" >> packages.json
 fi
-
 echo "  ]" >> packages.json
 echo "}" >> packages.json
 
-# Update Release file
+# ==================== Generate Release file ====================
 echo "🔐 Updating Release file..."
 cat > Release << EOF
 Origin: OpticalRaze
@@ -124,7 +131,7 @@ Description: Jailbreak tweaks and themes for iOS by Optical Raze
 Date: $(date -u +"%a, %d %b %Y %H:%M:%S %Z")
 EOF
 
-# Checksums
+# Add Checksums
 {
     echo "MD5Sum:"
     printf " %s %8d %s\n" "$($MD5_CMD Packages | awk '{print $1}')" "$($WC_CMD Packages | awk '{print $1}')" "Packages"
@@ -144,5 +151,4 @@ EOF
 
 cd - > /dev/null
 
-echo "✅ Repository successfully updated!"
-echo "   • packages.json should now be clean (no extra braces/commas)"
+echo "✅ Repository successfully updated in dist/!"
