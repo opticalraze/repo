@@ -1,162 +1,110 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
-import AppIcon from '../components/AppIcon.vue'
-import MainLayout from '../layouts/MainLayout.vue'
-import BaseButton from '../components/BaseButton.vue'
+import { useRoute } from 'vue-router'
+import PackageHeader from '../components/PackageHeader.vue'
+import PackageDescription from '../components/PackageDescription.vue'
+import PackageScreenshots from '../components/PackageScreenshots.vue'
+import PackageInfo from '../components/PackageInfo.vue'
+import PackageChangelog from '../components/PackageChangelog.vue'
+import BaseLayout from '../layouts/BaseLayout.vue'
 
 const route = useRoute()
-const router = useRouter()
+const baseUrl = import.meta.env.VITE_BASE_URL || 'https://repo.opticalraze.com'
 
 const packageData = ref(null)
 const loading = ref(true)
+const error = ref(null)
 
-// Load single package
 async function loadPackage() {
-    try {
-        const response = await fetch('/packages.json')
-        const data = await response.json()
-        
-        const slug = route.params.slug
-        const found = data.packages.find(pkg => 
-            pkg.bundle_id.toLowerCase().replace(/\s+/g, '-') === slug
-        )
-        
-        if (found) {
-            packageData.value = found
-        } else {
-            // Fallback: try by exact name
-            packageData.value = data.packages.find(pkg => pkg.name === route.params.name)
-        }
-    } catch (error) {
-        console.error("Failed to load package:", error)
-    } finally {
-        loading.value = false
+  try {
+    const response = await fetch('/packages.json')
+    const data = await response.json()
+
+    const slug = route.params.slug?.toLowerCase()
+
+    // Find by slug (recommended)
+    packageData.value = data.packages.find(pkg => 
+      pkg.bundle_id.toLowerCase().replace(/\s+/g, '-') === slug
+    )
+
+    if (!packageData.value) {
+      // Fallback: find by name
+      packageData.value = data.packages.find(pkg => 
+        pkg.name.toLowerCase() === route.params.name?.toLowerCase()
+      )
     }
+
+    if (!packageData.value) {
+      error.value = "Package not found"
+    }
+  } catch (err) {
+    console.error(err)
+    error.value = "Failed to load package"
+  } finally {
+    loading.value = false
+  }
 }
 
 onMounted(() => {
-    loadPackage()
+  loadPackage()
 })
-
-// Back button
-function goBack() {
-    router.back()
-}
 </script>
 
 <template>
+  <BaseLayout>
+    <div class="container" v-if="!loading && packageData">
+      
+      <PackageHeader 
+        :icon="`${baseUrl}/depictions/${packageData.bundle_id}/icon.png`"
+        :name="packageData.name"
+        :subtitle="packageData.subtitle"
+      />
 
-    <MainLayout>
-    <div class="min-h-screen bg-black text-white pb-20">
-        <!-- Back Button -->
-        <div v-if="false" class="sticky top-21 left-0 right-0 z-40 bg-black/80 backdrop-blur-lg border-b border-white/10">
-            <div class="flex items-center px-6 py-4">
-                <button @click="goBack" class="flex items-center gap-2 text-white/70 hover:text-white transition">
-                    <i class="fa-solid fa-chevron-left"></i>
-                    <span>Back</span>
-                </button>
-            </div>
-        </div>
+      <PackageDescription 
+        :description="packageData.description"
+        :features="packageData.features"
+      />
 
-        <div v-if="loading" class="flex justify-center items-center h-96">
-            <p class="text-white/50">Loading tweak...</p>
-        </div>
+      <PackageScreenshots 
+        :base-url="baseUrl"
+        :bundle-id="packageData.bundle_id"
+        :screenshot-count="packageData.screenshotCount || 3"
+      />
 
-        <div v-else-if="packageData" class="-mt-16">
-            <!-- Hero Image -->
-            <div class="relative h-80">
-                <img 
-                    :src="`${packageData.banner}`" 
-                    class="w-full h-full object-cover brightness-75"
-                >
-                <div class="absolute inset-0 bg-linear-to-b from-transparent via-black/60 to-black"></div>
-                
-                <!-- Name Overlay -->
-                <div class="absolute bottom-0 left-0 right-0 p-6 flex items-center gap-6">
-                    <AppIcon :src="`${packageData.icon}`" alt="icon" class="w-16 h-16" />
-                    <div class="">
-                        <h1 class="text-4xl font-bold tracking-tighter">{{ packageData.name }}</h1>
-                        <p class="text-white/70 -mt-0.5">{{ packageData.author || 'OpticalRaze' }}</p>
-                    </div>
-                </div>
-            </div>
+      <PackageInfo :package-data="packageData" />
 
-            <!-- Main Content -->
-            <div class="px-6 relative">
-                <div class="glass rounded-3xl p-6 mb-8">
-                    <div class="flex justify-between items-center">
-                        <div>
-                            <span class="text-xs bg-white/10 px-3 py-1.5 rounded-full">{{ packageData.version }}</span>
-                            <span class="ml-3 text-xs text-white/60">{{ packageData.category }}</span>
-                        </div>
-                        
-                        <BaseButton>
-                            {{ packageData.price === "Free" ? "Install" : packageData.price }}
-                        </BaseButton>
-                    </div>
-                </div>
+      <PackageChangelog :changelog="packageData.changelog" />
 
-                <!-- Description -->
-                <div class="mb-10">
-                    <h3 class="text-xl font-semibold mb-4">Description</h3>
-                    <p class="text-white/80 leading-relaxed">
-                        {{ packageData.longDescription || packageData.description }}
-                    </p>
-                </div>
+      <div class="footer">
+        <p>&copy; Copyright {{ new Date().getFullYear() }}, Optical Raze Inc.</p>
+      </div>
 
-                <!-- Screenshots -->
-                <div v-if="packageData.screenshots && packageData.screenshots.length" class="mb-10">
-                    <h3 class="text-xl font-semibold mb-4">Screenshots</h3>
-                    <div class="flex gap-4 overflow-x-auto pb-4 scrollbar-hide">
-                        <img 
-                            v-for="(screenshot, i) in packageData.screenshots"
-                            :key="i"
-                            :src="`https://raw.githubusercontent.com/opticalraze/repo/refs/heads/main/${screenshot}`"
-                            class="rounded-3xl max-h-96 object-contain border border-white/10"
-                        >
-                    </div>
-                </div>
-
-                <!-- What's New -->
-                <div v-if="packageData.changelog" class="mb-10">
-                    <h3 class="text-xl font-semibold mb-4">What's New</h3>
-                    <div class="glass rounded-3xl p-6 text-sm text-white/80">
-                        <pre class="whitespace-pre-wrap">{{ packageData.changelog }}</pre>
-                    </div>
-                </div>
-
-                <!-- Info -->
-                <div class="glass rounded-3xl p-6 text-sm">
-                    <div class="grid grid-cols-2 gap-y-6">
-                        <div>
-                            <p class="text-white/50 text-xs">Version</p>
-                            <p>{{ packageData.version }}</p>
-                        </div>
-                        <div>
-                            <p class="text-white/50 text-xs">Category</p>
-                            <p>{{ packageData.category }}</p>
-                        </div>
-                        <div>
-                            <p class="text-white/50 text-xs">Price</p>
-                            <p>{{ packageData.price }}</p>
-                        </div>
-                        <div>
-                            <p class="text-white/50 text-xs">Compatibility</p>
-                            <p>iOS 14.0+</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
-    </MainLayout>
+
+    <div v-else-if="error" class="error">
+      {{ error }}
+    </div>
+    <div v-else>Loading...</div>
+  </BaseLayout>
 </template>
 
 <style scoped>
-.glass {
-    background: rgba(255, 255, 255, 0.06);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+.container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.footer {
+  text-align: center;
+  padding: 40px 0;
+  color: #666;
+  font-size: 14px;
+}
+
+.error {
+  text-align: center;
+  color: #ff6b6b;
+  padding: 50px;
 }
 </style>

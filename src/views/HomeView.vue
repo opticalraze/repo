@@ -112,7 +112,7 @@ onMounted(() => {
                 <h3 class="text-xl font-semibold mb-4">All Packages</h3>
                 <div id="packages-list" class="space-y-4">
                     
-                    <ListCard v-for="(pkg, i) in filteredPackages" :key="i" :pkg="pkg" />
+                    <ListCard v-for="pkg in filteredPackages" :key="pkg.bundle_id" :pkg="pkg" />
                     
                     <!-- Empty state -->
                     <p

@@ -5,6 +5,26 @@
 # Generates files into dist/ for deployment
 # =============================================
 
+# Version comparison function
+compare_versions() {
+    local a=$1 b=$2
+    local IFS='.'
+    read -ra arrA <<< "$a"
+    read -ra arrB <<< "$b"
+    for ((i=0; i<${#arrA[@]} || i<${#arrB[@]}; i++)); do
+        local numA=${arrA[i]:-0}
+        local numB=${arrB[i]:-0}
+        if ((numA > numB)); then
+            echo 1
+            return
+        elif ((numA < numB)); then
+            echo -1
+            return
+        fi
+    done
+    echo 0
+}
+
 DEBS_DIR="debs"
 DEPICTIONS_DIR="depictions"
 DIST_DIR="dist"
@@ -17,11 +37,6 @@ if [ ! -d "$DEBS_DIR" ]; then
     exit 1
 fi
 
-if [ ! -d "$DEPICTIONS_DIR" ]; then
-    echo "❌ Error: $DEPICTIONS_DIR directory not found!"
-    exit 1
-fi
-
 DEB_COUNT=$(ls -1 "$DEBS_DIR"/*.deb 2>/dev/null | wc -l)
 echo "📦 Found $DEB_COUNT .deb file(s)"
 
@@ -30,15 +45,12 @@ if [ "$DEB_COUNT" -eq 0 ]; then
     exit 1
 fi
 
-# Create repo structure in dist/
-# mkdir -p "$DIST_DIR/dists/stable/main/binary-amd64"
+# Create repo structure
 mkdir -p "$DIST_DIR/debs"
 mkdir -p "$DIST_DIR/depictions"
 
-# Copy depictions into dist/
+# Copy files
 cp -r "$DEPICTIONS_DIR"/* "$DIST_DIR/depictions/" 2>/dev/null || true
-
-# Copy debs into dist/
 cp -r "$DEBS_DIR"/* "$DIST_DIR/debs/" 2>/dev/null || true
 
 cd "$DIST_DIR" || exit 1
@@ -64,9 +76,54 @@ echo "🗜️  Compressing Packages..."
 bzip2 -c -k Packages > Packages.bz2
 gzip -c -k Packages > Packages.gz
 
-# ==================== Generate packages.json ====================
-echo "📄 Generating clean packages.json..."
+# ==================== Generate packages.json (Latest Version Only) ====================
+echo "📄 Generating packages.json (latest version per tweak)..."
 
+# Temporary files for processing
+> temp_packages.txt
+
+# Parse Packages and keep only latest version per bundle_id
+current_bundle=""
+current_name=""
+current_version=""
+current_desc=""
+
+while IFS= read -r line || [ -n "$line" ]; do
+    if [[ $line == "Package:"* ]]; then
+        current_bundle=$(echo "$line" | awk '{print $2}')
+    elif [[ $line == "Name:"* ]]; then
+        current_name=$(echo "$line" | sed 's/Name: //')
+    elif [[ $line == "Version:"* ]]; then
+        current_version=$(echo "$line" | awk '{print $2}')
+    elif [[ $line == "Description:"* ]]; then
+        current_desc=$(echo "$line" | sed 's/Description: //')
+    elif [[ -z "$line" && -n "$current_bundle" ]]; then
+        # End of package block
+        icon_path="/depictions/${current_bundle}/icon.png"
+        banner_path="/depictions/${current_bundle}/banner.png"
+
+        echo "$current_bundle|$current_version|$current_name|$current_desc|$icon_path|$banner_path" >> temp_packages.txt
+
+        # Reset
+        current_bundle=""
+        current_name=""
+        current_version=""
+        current_desc=""
+    fi
+done < Packages
+
+# Now process temp file to keep only latest version
+> unique_packages.txt
+
+sort -t'|' -k1,1 -k2,2Vr temp_packages.txt | awk -F'|' '
+{
+    if (!seen[$1]) {
+        print $0
+        seen[$1] = 1
+    }
+}' > unique_packages.txt
+
+# Generate final JSON
 cat > packages.json << EOF
 {
   "packages": [
@@ -75,51 +132,36 @@ EOF
 id_counter=1
 is_first=1
 
-while IFS= read -r line || [ -n "$line" ]; do
-    if [[ $line == "Package:"* ]]; then
-        bundle_id=$(echo "$line" | awk '{print $2}')
-    elif [[ $line == "Name:"* ]]; then
-        name=$(echo "$line" | sed 's/Name: //')
-    elif [[ $line == "Version:"* ]]; then
-        version=$(echo "$line" | awk '{print $2}')
-    elif [[ $line == "Description:"* ]]; then
-        description=$(echo "$line" | sed 's/Description: //')
-    elif [[ $line == "" && -n "$bundle_id" ]]; then
-        if [ $is_first -eq 0 ]; then
-            echo "    }," >> packages.json
-        fi
-        is_first=0
+while IFS='|' read -r bundle version name desc icon banner; do
+    if [ $is_first -eq 0 ]; then
+        echo "    }," >> packages.json
+    fi
+    is_first=0
 
-        icon="/depictions/${bundle_id}/icon.png"
-        banner="/depictions/${bundle_id}/banner.png"
-
-        cat >> packages.json << EOF
+    cat >> packages.json << EOF
     {
       "id": $id_counter,
-      "bundle_id": "$bundle_id",
+      "bundle_id": "$bundle",
       "name": "$name",
-      "description": "$description",
+      "description": "$desc",
       "icon": "$icon",
       "banner": "$banner",
       "version": "$version",
       "category": "Tweaks",
       "price": "Free"
 EOF
-        id_counter=$((id_counter + 1))
+    id_counter=$((id_counter + 1))
+done < unique_packages.txt
 
-        bundle_id=""
-        name=""
-        version=""
-        description=""
-    fi
-done < Packages
-
-# Close JSON properly
+# Close JSON
 if [ $is_first -eq 0 ]; then
     echo "    }" >> packages.json
 fi
 echo "  ]" >> packages.json
 echo "}" >> packages.json
+
+# Cleanup temp files
+rm -f temp_packages.txt unique_packages.txt
 
 # ==================== Generate Release file ====================
 echo "🔐 Updating Release file..."
@@ -155,4 +197,4 @@ EOF
 
 cd - > /dev/null
 
-echo "✅ Repository successfully updated in dist/!"
+echo "✅ Repository successfully updated in dist/! (packages.json contains latest versions only)"
