@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import AppIcon from '../components/AppIcon.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -69,11 +70,10 @@ function goBack() {
                 
                 <!-- Name Overlay -->
                 <div class="absolute bottom-0 left-0 right-0 p-6 flex items-center gap-6">
-                    <img :src="`${packageData.icon}`" alt="icon" class="w-16 h-16 rounded-xl">
+                    <AppIcon :src="`${packageData.icon}`" alt="icon" class="w-16 h-16" />
                     <div class="">
-                                            <h1 class="text-4xl font-bold tracking-tighter">{{ packageData.name }}</h1>
-                    <p class="text-white/70 -mt-0.5">{{ packageData.author || 'Optical Raze' }}</p>
-
+                        <h1 class="text-4xl font-bold tracking-tighter">{{ packageData.name }}</h1>
+                        <p class="text-white/70 -mt-0.5">{{ packageData.author || 'OpticalRaze' }}</p>
                     </div>
                 </div>
             </div>
