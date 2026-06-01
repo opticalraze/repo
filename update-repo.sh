@@ -31,11 +31,15 @@ if [ "$DEB_COUNT" -eq 0 ]; then
 fi
 
 # Create repo structure in dist/
-mkdir -p "$DIST_DIR/dists/stable/main/binary-amd64"
+# mkdir -p "$DIST_DIR/dists/stable/main/binary-amd64"
+mkdir -p "$DIST_DIR/debs"
 mkdir -p "$DIST_DIR/depictions"
 
 # Copy depictions into dist/
 cp -r "$DEPICTIONS_DIR"/* "$DIST_DIR/depictions/" 2>/dev/null || true
+
+# Copy debs into dist/
+cp -r "$DEBS_DIR"/* "$DIST_DIR/debs/" 2>/dev/null || true
 
 cd "$DIST_DIR" || exit 1
 
