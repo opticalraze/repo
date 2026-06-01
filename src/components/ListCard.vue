@@ -1,5 +1,6 @@
 <script setup>
 import AppIcon from './AppIcon.vue';
+import BaseButton from './BaseButton.vue';
 
 defineProps({
     pkg: Object,
@@ -8,7 +9,7 @@ defineProps({
 
 <template>
     <!-- Populated dynamically -->
-    <RouterLink :to="`/tweak/${pkg.bundle_id.toLowerCase().replace(/\s+/g, '-')}`"
+    <RouterLink :to="`/package/${pkg.bundle_id.toLowerCase().replace(/\s+/g, '-')}`"
         class="flex items-center gap-4 glass rounded-3xl p-4 ios-card border border-white/10"
     >
         <AppIcon :src="`${pkg.icon}`" class="w-14 h-14" />
@@ -17,8 +18,8 @@ defineProps({
             <p class="text-sm text-white/60 line-clamp-1">{{ pkg.description }}</p>
             <p class="text-xs text-white/40 mt-1">{{ pkg.version }} • {{ pkg.category }}</p>
         </div>
-        <button class="bg-white text-black text-sm font-medium px-6 py-2 rounded-2xl active:scale-95 transition">
+        <BaseButton>
             {{ pkg.price === "Free" ? "Get" : pkg.price }}
-        </button>
+        </BaseButton>
     </RouterLink>
 </template>

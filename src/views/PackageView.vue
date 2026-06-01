@@ -2,6 +2,8 @@
 import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import AppIcon from '../components/AppIcon.vue'
+import MainLayout from '../layouts/MainLayout.vue'
+import BaseButton from '../components/BaseButton.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -44,6 +46,8 @@ function goBack() {
 </script>
 
 <template>
+
+    <MainLayout>
     <div class="min-h-screen bg-black text-white pb-20">
         <!-- Back Button -->
         <div v-if="false" class="sticky top-21 left-0 right-0 z-40 bg-black/80 backdrop-blur-lg border-b border-white/10">
@@ -87,9 +91,9 @@ function goBack() {
                             <span class="ml-3 text-xs text-white/60">{{ packageData.category }}</span>
                         </div>
                         
-                        <button class="bg-white text-black font-semibold px-8 py-3 rounded-2xl active:scale-95 transition">
+                        <BaseButton>
                             {{ packageData.price === "Free" ? "Install" : packageData.price }}
-                        </button>
+                        </BaseButton>
                     </div>
                 </div>
 
@@ -146,6 +150,7 @@ function goBack() {
             </div>
         </div>
     </div>
+    </MainLayout>
 </template>
 
 <style scoped>
