@@ -1,19 +1,19 @@
 Package: com.opticalraze.iconforge
-Version: 1.0-4+debug
+Version: 1.0-5+debug
 Architecture: iphoneos-arm64
 Maintainer: Optical Raze Inc.
 Installed-Size: 264
 Depends: firmware (>= 15.0)
-Filename: ../debs/com.opticalraze.iconforge_1.0-4+debug_iphoneos-arm64.deb
-Size: 15216
-MD5sum: 0d061c4e51d2cc758fa4f4cc97fead68
-SHA1: d514f18d7effa437f8a3d8c6475bf3a230f8fa6d
-SHA256: b266f54823e58f77c283b8aa5afede3dda9113d9a92ed6fd838e600b08d0d169
+Filename: ../debs/com.opticalraze.iconforge_1.0-5+debug_iphoneos-arm64.deb
+Size: 15218
+MD5sum: 5c9d8cda5145dd6a856fc35281262ac9
+SHA1: 98c9f0f18663a91b66a703239dfaa2c279cc3cc6
+SHA256: f2a18a79fcdc7255d4cc0a2bdac25eea017ec064bf7dfb65afe8cb2f5b92d1bc
 Section: Tweaks
-Homepage: https://repo.opticalraze.com/package/com.opticalraze.iconforge
+Homepage: https://repo.opticalraze.com/#/package/com.opticalraze.iconforge
 Description: Generate custom unified icon themes!
 Author: Optical Raze Inc.
-Depiction: https://repo.opticalraze.com/depiction/com.opticalraze.iconforge
+Depiction: https://repo.opticalraze.com/#/depiction/com.opticalraze.iconforge
 Icon: https://repo.opticalraze.com/depictions/com.opticalraze.iconforge/image.png
 Name: IconForge
 Sileodepiction: https://repo.opticalraze.com/depictions/com.opticalraze.neosiiconforgeri/sileo.json
