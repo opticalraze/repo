@@ -6,16 +6,16 @@ Codename: ios
 Architectures: iphoneos-arm iphoneos-arm64
 Components: main
 Description: Jailbreak tweaks and themes for iOS by Optical Raze
-Date: Mon, 01 Jun 2026 05:52:48 UTC
+Date: Mon, 01 Jun 2026 12:06:09 UTC
 MD5Sum:
- 0e88d2718cfa476b5311de15d4bccbd0     2239 Packages
- f411c2f629f7afbda2db1505db6f728f      915 Packages.gz
- 00139adff93e84d46bd8ab217123b6d6     1006 Packages.bz2
+ 4fd64e0f530f84b4886780bea8db8ddc     3008 Packages
+ a1f2f065aef2f995f8138d8746f0d2cb     1038 Packages.gz
+ 1e78cb762ae285e8ab3675894a0c6fc3     1144 Packages.bz2
 SHA1:
- 03d594542b5a9aed44f00882e346ef718426555d     2239 Packages
- cecbde55e3fefaca0d8119edff198e3317cd68a0      915 Packages.gz
- 11bdd442dfd517e36ce3f94e7451ce9bf05d6676     1006 Packages.bz2
+ 793bb63befa218672e20c76e617bdf9183c7aea8     3008 Packages
+ d04f2183478387d88596f1879ad10b2b25018517     1038 Packages.gz
+ fdfe957e38fcaab043bbcdaf51aea8b08cce9db8     1144 Packages.bz2
 SHA256:
- ee3a358d2ca88a6f6c5f939e6657054d0278187519f1bf5b377a27561b9dedd2     2239 Packages
- 03b43d020261ae29e925f336e566a8711be79662ca04ebc403e26fc2a811ae5d      915 Packages.gz
- 0f68214815e1c68f70b64b4cf1172e7966b3a8dd1cd1eb6af9fd7322ccc79dbb     1006 Packages.bz2
+ b269bc1a2149e871194ceb1f1ef0aebc3093f5005dc2195f4cce47285fd18cc9     3008 Packages
+ d39e364eb9de2fe7fb6aac6b96419f6c7a8925ccad87ba605aaa5e2fd179ddff     1038 Packages.gz
+ 88e2ec7a0cda5be5ee44dc76163ba77bda2b91c33f8c2f5380b3a29961c98e27     1144 Packages.bz2

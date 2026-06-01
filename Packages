@@ -53,3 +53,22 @@ Icon: https://repo.opticalraze.com/depictions/com.opticalraze.textswap/icon.png
 Name: TextSwap
 Sileodepiction: https://repo.opticalraze.com/depictions/com.opticalraze.textswap/sileo.json
 
+Package: com.opticalraze.textswap
+Version: 1.0-3+debug
+Architecture: iphoneos-arm
+Maintainer: OpticalRaze
+Installed-Size: 588
+Depends: mobilesubstrate, preferenceloader
+Filename: ../debs/com.opticalraze.textswap_1.0-3+debug_iphoneos-arm.deb
+Size: 59832
+MD5sum: c90eddf25cc7a36466ecbb6753800488
+SHA1: 808d642a7f95b957c502f5dc923d283ce8dc53af
+SHA256: 47daacd2becc6e5788c85d5bcb419b000246d1471e6697f28663027898e4d78f
+Section: Tweaks
+Description: Replace any text, system-wide!
+Author: OpticalRaze
+Depiction: https://repo.opticalraze.com/depictions/com.opticalraze.textswap/index.html
+Icon: https://repo.opticalraze.com/depictions/com.opticalraze.textswap/icon.png
+Name: TextSwap
+Sileodepiction: https://repo.opticalraze.com/depictions/com.opticalraze.textswap/sileo.json
+

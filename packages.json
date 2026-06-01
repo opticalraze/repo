@@ -32,6 +32,17 @@
       "version": "1.0-2+debug",
       "category": "Tweaks",
       "price": "Free"
+    },
+    {
+      "id": 4,
+      "bundle_id": "com.opticalraze.textswap",
+      "name": "TextSwap",
+      "description": "Replace any text, system-wide!",
+      "icon": "/depictions/com.opticalraze.textswap/icon.png",
+      "banner": "/depictions/com.opticalraze.textswap/banner.png",
+      "version": "1.0-3+debug",
+      "category": "Tweaks",
+      "price": "Free"
     }
   ]
 }
