@@ -26,6 +26,10 @@ const { imageSrc } = usePackageImage(props.pkg)
             :src="imageSrc" 
             class="absolute inset-0 z-20 w-full h-full object-cover"
             />
+
+            <div class="absolute z-30 flex flex-col justify-end text-center w-full h-full">
+                <p class="w-full py-2 font-medium italic">{{ pkg.subtitle }}</p>
+            </div>
         </div>
         <div class="p-4">
             <h4 class="font-semibold">{{ pkg.name }}</h4>
