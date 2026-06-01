@@ -9,7 +9,7 @@ defineProps({
     <RouterLink :to="`/tweak/${pkg.bundle_id.toLowerCase().replace(/\s+/g, '-')}`"
         class="flex items-center gap-4 glass rounded-3xl p-4 ios-card border border-white/10"
     >
-        <img :src="`${pkg.icon}`" class="w-14 h-14 rounded-2xl object-cover bg-white/10" />
+        <img :src="`${pkg.icon}`" class="w-14 h-14 rounded-2xl object-cover bg-white/10 border border-white/5" />
         <div class="flex-1 min-w-0">
             <h4 class="font-medium">{{ pkg.name }}</h4>
             <p class="text-sm text-white/60 line-clamp-1">{{ pkg.description }}</p>
