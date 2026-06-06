@@ -83,12 +83,13 @@ onMounted(() => {
                 <RouterLink to="/featured" class="text-[#00b4ff] text-sm font-medium">See all →</RouterLink>
             </div>
             <div id="featured-list" class="flex gap-4 overflow-scroll w-full mb-10 pt-4 scrollbar-hide">
+                <div class="w-2 shrink-0"></div>
                 <FeaturedCard 
                 v-for="(pkg, i) in featuredPackages"
                 :key="i"
                 :pkg="pkg"
-                class="first:ml-6 last:mr-6"
                 />
+                <div class="w-2 shrink-0"></div>
             </div>
             
             <!-- Categories -->
@@ -96,11 +97,13 @@ onMounted(() => {
                 <h3 class="text-xl font-semibold mb-4 px-8">Categories</h3>
                 <div class="relative">
                     <div class="flex gap-3 overflow-x-auto pb-4 scrollbar-hide">
-                        <div class="glass px-6 py-3 rounded-3xl whitespace-nowrap border border-white/10 first:ml-6 last:mr-6">All Tweaks</div>
-                        <div class="glass px-6 py-3 rounded-3xl whitespace-nowrap border border-white/10 first:ml-6 last:mr-6">Themes</div>
-                        <div class="glass px-6 py-3 rounded-3xl whitespace-nowrap border border-white/10 first:ml-6 last:mr-6">Status Bar</div>
-                        <div class="glass px-6 py-3 rounded-3xl whitespace-nowrap border border-white/10 first:ml-6 last:mr-6">Lockscreen</div>
-                        <div class="glass px-6 py-3 rounded-3xl whitespace-nowrap border border-white/10 first:ml-6 last:mr-6">Utilities</div>
+                        <div class="w-3 shrink-0"></div>
+                        <div class="glass px-6 py-3 rounded-3xl whitespace-nowrap border border-white/10">All Tweaks</div>
+                        <div class="glass px-6 py-3 rounded-3xl whitespace-nowrap border border-white/10">Themes</div>
+                        <div class="glass px-6 py-3 rounded-3xl whitespace-nowrap border border-white/10">Status Bar</div>
+                        <div class="glass px-6 py-3 rounded-3xl whitespace-nowrap border border-white/10">Lockscreen</div>
+                        <div class="glass px-6 py-3 rounded-3xl whitespace-nowrap border border-white/10">Utilities</div>
+                        <div class="w-3 shrink-0"></div>
                     </div>
                     <div v-if="false" class="absolute z-20 w-6 h-full top-0 left-0 bg-linear-to-r from-black to-transparent pointer-events-none"></div>
                     <div v-if="false" class="absolute z-20 w-6 h-full top-0 right-0 bg-to-left bg-linear-to-l from-black to-transparent pointer-events-none"></div>
